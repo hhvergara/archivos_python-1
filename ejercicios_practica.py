@@ -98,16 +98,19 @@ def ej2():
         mes_stock= input("Ingresa el mes que deseas cargar stock")
         
         if mes_stock in meses:
-            tornillos = input ("Idique el stock de tornillos segun el mes:")
+            tornillos = input ("Idique el stock de tornillos segun el mes:") 
             arandelas = input ("Idique el stock de arandelas segun el mes:")
             tuercas = input ("Idique el stock de tuercas segun el mes:")
             mes_ingresado = (mes_stock)
             stock_mes = {"tornillos":(tornillos), "arandelas":(arandelas), "tuercas":(tuercas)}
-            print("El stock correspondiente al mes de",mes_ingresado, "es de", stock_mes,"\n")
+            print("El stock correspondiente al mes de",mes_ingresado, "es de", stock_mes,"\n") # En esta linea tendrías que hacer un append del diccionario
+            # a una lista para obtener la lista de diccionarios:
+            #  [{'tornillos': 30, 'tuercas': 20, 'arandelas': 5}, {'tornillos': 100, 'tuercas': 50, 'arandelas': 15}, {'tornillos': 80, 'tuercas': 70, 'arandelas': 10}]
+            # Y luego, fuera del bucle hacer el print de los 3. Me gustó el  detalle de los meses!
             
         else:
             print("El mes ingresado no es valido")
-    print ("_______________________________________\n")
+    print ("_______________________________________\n") # Recordá que en el print no hace falta el \n, ya viene por defecto!
     
 
 def ej3():
@@ -121,6 +124,7 @@ def ej3():
     fila del archivo
     '''
     with open (r'C:\Users\Francisco Pch\Desktop\Python\inove\Curso 1 Inove\unidad_5\archivos_python-master\stock.csv', newline='') as csvfile:
+        # Para que no tengas que poner toda la ruta, abrí el visual studio code en la carpeta donde está el .csv :D
         reader = csv.DictReader(csvfile)
         col_tor = 0
         for row in reader:
@@ -143,6 +147,8 @@ def ej4():
     Al finalizar el proceso, imprima en pantalla los resultados.
     '''
     with open (r'C:\Users\Francisco Pch\Desktop\Python\inove\Curso 1 Inove\unidad_5\archivos_python-master\propiedades.csv', newline='') as csvfile:
+        # Para que no tengas que poner toda la ruta, abrí el visual studio code en la carpeta donde está el .csv :D
+
         reader = csv.DictReader(csvfile)
         reader = list(reader)
         filas = len(reader)
