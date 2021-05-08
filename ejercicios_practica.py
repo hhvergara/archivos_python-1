@@ -20,11 +20,17 @@ import re
 
 
 def ej1():
-    print('Ejercicios con diccionarios')
+    print('Ejercicios con diccionarios \n')
+    print ("Ejercicio 1:\n")
     # Crear un diccionario vacio que luego completaremos
     # con el stock de elementos de ferreteris
     # el diccionario vacio debe llamarse "stock"
-    
+
+    stock = {"tornillos": 300, "tuercas": 150, "arandelas":300}
+    print (stock,"\n")
+
+    print ("_______________________________________\n")
+
     # stock = ....
 
     # Luego de crear el diccionario completelo
@@ -41,23 +47,26 @@ def ej1():
 
 
 def ej2():
-    print('Ejercicio con diccionarios')
+    print('Ejercicio con diccionarios \n')
+    print ("Ejercicio 2:\n")
+
     # Basado en el ejemplo anterior, deseamos tener un stock mes a mes
     # de los items tornillos, tuerca y arandelas.
 
     # Crear un diccionario por cada mes, cada diccionario se llamara "mes"
     # Cada uno que se genere debe tener los tres campos
     # tornillos, tuerca y arandelas y su respectivo stock
+    # # Cada diccionario deberá almacenarse en una lista llamada stock
 
-    # Cada diccionario deberá almacenarse en una lista llamada stock
+    
 
     # Paso 1:
     # Generar un bucle de 3 iteraciones, solo generaremos el stock de
-    # tres meses
+    # tres meses ok
 
     # Paso 2:
     # En cada iteracion del bucle solicitar por consola cuando
-    # stock se desea informar de cada uno de los 3 elementos
+    # stock se desea informar de cada uno de los 3 elementos ok
 
     # Paso 3:
     # Generar un diccionar llamado "mes" con los tres valores
@@ -84,20 +93,48 @@ def ej2():
     # pero los valores para cada diccionario en cada mes
     # son ingresados por consola
 
+    meses = ["enero", "febrero", "marzo"]
+    for i in meses:
+        mes_stock= input("Ingresa el mes que deseas cargar stock")
+        
+        if mes_stock in meses:
+            tornillos = input ("Idique el stock de tornillos segun el mes:")
+            arandelas = input ("Idique el stock de arandelas segun el mes:")
+            tuercas = input ("Idique el stock de tuercas segun el mes:")
+            mes_ingresado = (mes_stock)
+            stock_mes = {"tornillos":(tornillos), "arandelas":(arandelas), "tuercas":(tuercas)}
+            print("El stock correspondiente al mes de",mes_ingresado, "es de", stock_mes,"\n")
+            
+        else:
+            print("El mes ingresado no es valido")
+    print ("_______________________________________\n")
+    
 
-def eje3():
-    print('Ejercicio de archivos CSV')
+def ej3():
+    print('Ejercicio de archivos CSV \n')
+    print ("Ejercicio 3:\n")
+
     '''
     Realice un programa que abra el archivo 'stock.csv'
     y cuente el stock total de tornillos a lo largo
     de todo el archivo, sumando el stock en cada
     fila del archivo
     '''
+    with open (r'C:\Users\Francisco Pch\Desktop\Python\inove\Curso 1 Inove\unidad_5\archivos_python-master\stock.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        col_tor = 0
+        for row in reader:
+            col_tor += int(row['tornillos'])
+        print ("El total de tornillos en la matriz es:", col_tor,'\n')
+
+    print ("_______________________________________\n")
+
 
 
 def ej4():
-    print('Ejercicios con archivos CSV')
-    archivo = 'propiedades.csv'
+    print('Ejercicios con archivos CSV \n')
+    print ("Ejercicio 4:\n")
+    
     '''
     Realice un programa que abra el archivo CSV "propiedades.csv"
     en modo lectura. Recorrar dicho archivo y contar
@@ -105,11 +142,46 @@ def ej4():
     de departamentos de 3 ambientes disponibles.
     Al finalizar el proceso, imprima en pantalla los resultados.
     '''
+    with open (r'C:\Users\Francisco Pch\Desktop\Python\inove\Curso 1 Inove\unidad_5\archivos_python-master\propiedades.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        reader = list(reader)
+        filas = len(reader)
+        columnas = len(reader[0])
+        
+        #para conocer el largo de filas y columnas#
+        print ("El archivo tiene", filas,"filas y tiene", columnas, "columnas \n")
+
+        
+        # para conocer los titulos de las comlumnas#
+        print(" Los titulos de las columnas son:")
+        columnas = (reader[0])
+        for col in columnas:
+            columnas = (col)
+            print(columnas, '\n')
+        
+
+        # para resolver el ejercicio#
+        
+        col_ambi_2 = 0
+        col_ambi_3 = 0
+
+        for i in range (len(reader)):
+            columna = reader[i]
+            for k, v in columna.items():
+                if (k=='ambientes') and (v == "2"):
+                    col_ambi_2 += 1
+                if (k=='ambientes') and (v == "3"):
+                    col_ambi_3 += 1
+        print ("La cantidad de departamentos con 3 ambientes es:",col_ambi_2, "\n")
+        print ("La cantidad de departamentos con 3 ambientes es:",col_ambi_3, "\n")
+            
+
+
 
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
     ej1()
-    # ej2()
-    # ej3()
-    # ej4()
+    ej2()
+    ej3()
+    ej4()
